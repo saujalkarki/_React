@@ -1,104 +1,154 @@
-// // import { FirstComponent } from "./components/index";
+// import { FirstComponent } from "./components/index";
 
-// import "./index.css";
+import "./index.css";
 
-// function App() {
-//   return (
-//     <>
-//       <FirstComponent />
-//     </>
+const pizzaData = [
+  {
+    name: "Pizza Focaccia",
+    ingredients: "Bread with italian olive oil and rosemary",
+    price: 6,
+    photoName: "pizzas/focaccia.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Margherita",
+    ingredients: "Tomato and mozarella",
+    price: 10,
+    photoName: "pizzas/margherita.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Spinaci",
+    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+    price: 12,
+    photoName: "pizzas/spinaci.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Funghi",
+    ingredients: "Tomato, mozarella, mushrooms, and onion",
+    price: 12,
+    photoName: "pizzas/funghi.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Salamino",
+    ingredients: "Tomato, mozarella, and pepperoni",
+    price: 15,
+    photoName: "pizzas/salamino.jpg",
+    soldOut: true,
+  },
+  {
+    name: "Pizza Prosciutto",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+    price: 18,
+    photoName: "pizzas/prosciutto.jpg",
+    soldOut: false,
+  },
+];
+
+function App() {
+  return (
+    <>
+      <FirstComponent />
+    </>
+  );
+}
+
+function FirstComponent() {
+  return (
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+
+function Header() {
+  // const style = { color: "red", fontSize: "40px", textTransform: "uppercase" };
+  // return <h1 style={style}>Fast React Pizza co.</h1>;
+
+  return (
+    <div style={{}} className="header">
+      <h1>React Pizza co.</h1>
+    </div>
+  );
+}
+
+//parent component
+function Menu() {
+  return (
+    <div className="menu">
+      <h2>Our Menu</h2>
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
+      {/* <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="./public/pizzas/spinaci.jpg"
+        price={12}
+      />
+      <Pizza
+        name="Pizza Margherita"
+        ingredients="Tomato and mozarella"
+        photoName="./pizzas/margherita.jpg"
+        price={10}
+      /> */}
+    </div>
+  );
+}
+
+//child component
+function Pizza(props) {
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h3>Pizza: {props.pizzaObj.name}</h3>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price + 5}</span>
+      </div>
+    </li>
+  );
+}
+
+const Footer = () => {
+  //   const hour = new Date().getHours();
+  //   const openHour = 9;
+  //   const closeHour = 19;
+  //   const isOpen = hour >= openHour && hour <= closeHour;
+  //   console.log(hour);
+  //   console.log(isOpen);
+
+  //   {
+  //     isOpen ? alert("We are Open right now") : alert("We are Close right now");
+  //   }
+
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We are Currently open in the town!
+    </footer>
+  );
+};
+// For the above code we can perform below task too:
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// function Footer() {
+//   return React.createElement(
+//     "footer",
+//     null,
+//     "We are currently open in the town"
 //   );
 // }
 
-// function FirstComponent() {
-//   console.clear();
-//   return (
-//     <div className="container">
-//       <Header />
-//       <Menu />
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// function Header() {
-//   // const style = { color: "red", fontSize: "40px", textTransform: "uppercase" };
-//   // return <h1 style={style}>Fast React Pizza co.</h1>;
-
-//   return (
-//     <div style={{}} className="header">
-//       <h1>React Pizza co.</h1>
-//     </div>
-//   );
-// }
-
-// //parent component
-// function Menu() {
-//   return (
-//     <div className="menu">
-//       <h2>Our Menu</h2>
-//       <Pizza
-//         name="Pizza Spinaci"
-//         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-//         photoName="./public/pizzas/spinaci.jpg"
-//         price={12}
-//       />
-//       <Pizza
-//         name="Pizza Margherita"
-//         ingredients="Tomato and mozarella"
-//         photoName="./pizzas/margherita.jpg"
-//         price={10}
-//       />
-//     </div>
-//   );
-// }
-
-// //child component
-// function Pizza(props) {
-//   return (
-//     <div className="pizza">
-//       <img src={props.photoName} alt={props.name} />
-//       <div>
-//         <h3>Pizza: {props.name}</h3>
-//         <p>{props.ingredients}</p>
-//         <span>{props.price + 5}</span>
-//       </div>
-//     </div>
-//   );
-// }
-
-// const Footer = () => {
-//   //   const hour = new Date().getHours();
-//   //   const openHour = 9;
-//   //   const closeHour = 19;
-//   //   const isOpen = hour >= openHour && hour <= closeHour;
-//   //   console.log(hour);
-//   //   console.log(isOpen);
-
-//   //   {
-//   //     isOpen ? alert("We are Open right now") : alert("We are Close right now");
-//   //   }
-
-//   return (
-//     <footer className="footer">
-//       {new Date().toLocaleTimeString()} We are Currently open in the town!
-//     </footer>
-//   );
-// };
-// // For the above code we can perform below task too:
-// // import React from "react";
-// // import ReactDOM from "react-dom/client";
-// // function Footer() {
-// //   return React.createElement(
-// //     "footer",
-// //     null,
-// //     "We are currently open in the town"
-// //   );
-// // }
-
-// export default App;
+export default App;
 
 // -------------------Coding Challange 1-----------------
+/*
 import "./example.css";
 
 function App() {
@@ -153,3 +203,4 @@ function Button(props) {
 }
 
 export default App;
+*/
