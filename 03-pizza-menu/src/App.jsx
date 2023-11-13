@@ -1,155 +1,231 @@
-// import { FirstComponent } from "./components/index";
+// // import { FirstComponent } from "./components/index";
+// import React, { Fragment } from "react";
+// import "./index.css";
 
-import "./index.css";
+// const pizzaData = [
+//   {
+//     name: "Pizza Focaccia",
+//     ingredients: "Bread with italian olive oil and rosemary",
+//     price: 6,
+//     photoName: "pizzas/focaccia.jpg",
+//     soldOut: false,
+//   },
+//   {
+//     name: "Pizza Margherita",
+//     ingredients: "Tomato and mozarella",
+//     price: 10,
+//     photoName: "pizzas/margherita.jpg",
+//     soldOut: false,
+//   },
+//   {
+//     name: "Pizza Spinaci",
+//     ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+//     price: 12,
+//     photoName: "pizzas/spinaci.jpg",
+//     soldOut: false,
+//   },
+//   {
+//     name: "Pizza Funghi",
+//     ingredients: "Tomato, mozarella, mushrooms, and onion",
+//     price: 12,
+//     photoName: "pizzas/funghi.jpg",
+//     soldOut: false,
+//   },
+//   {
+//     name: "Pizza Salamino",
+//     ingredients: "Tomato, mozarella, and pepperoni",
+//     price: 15,
+//     photoName: "pizzas/salamino.jpg",
+//     soldOut: true,
+//   },
+//   {
+//     name: "Pizza Prosciutto",
+//     ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+//     price: 18,
+//     photoName: "pizzas/prosciutto.jpg",
+//     soldOut: false,
+//   },
+// ];
 
-const pizzaData = [
-  {
-    name: "Pizza Focaccia",
-    ingredients: "Bread with italian olive oil and rosemary",
-    price: 6,
-    photoName: "pizzas/focaccia.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Margherita",
-    ingredients: "Tomato and mozarella",
-    price: 10,
-    photoName: "pizzas/margherita.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Spinaci",
-    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
-    price: 12,
-    photoName: "pizzas/spinaci.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Funghi",
-    ingredients: "Tomato, mozarella, mushrooms, and onion",
-    price: 12,
-    photoName: "pizzas/funghi.jpg",
-    soldOut: false,
-  },
-  {
-    name: "Pizza Salamino",
-    ingredients: "Tomato, mozarella, and pepperoni",
-    price: 15,
-    photoName: "pizzas/salamino.jpg",
-    soldOut: true,
-  },
-  {
-    name: "Pizza Prosciutto",
-    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
-    price: 18,
-    photoName: "pizzas/prosciutto.jpg",
-    soldOut: false,
-  },
-];
+// function App() {
+//   return <FirstComponent />;
+// }
 
-function App() {
-  return (
-    <>
-      <FirstComponent />
-    </>
-  );
-}
-
-function FirstComponent() {
-  return (
-    <div className="container">
-      <Header />
-      <Menu />
-      <Footer />
-    </div>
-  );
-}
-
-function Header() {
-  // const style = { color: "red", fontSize: "40px", textTransform: "uppercase" };
-  // return <h1 style={style}>Fast React Pizza co.</h1>;
-
-  return (
-    <div style={{}} className="header">
-      <h1>React Pizza co.</h1>
-    </div>
-  );
-}
-
-//parent component
-function Menu() {
-  return (
-    <div className="menu">
-      <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="./public/pizzas/spinaci.jpg"
-        price={12}
-      />
-      <Pizza
-        name="Pizza Margherita"
-        ingredients="Tomato and mozarella"
-        photoName="./pizzas/margherita.jpg"
-        price={10}
-      /> */}
-    </div>
-  );
-}
-
-//child component
-function Pizza(props) {
-  return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
-      <div>
-        <h3>Pizza: {props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price + 5}</span>
-      </div>
-    </li>
-  );
-}
-
-const Footer = () => {
-  //   const hour = new Date().getHours();
-  //   const openHour = 9;
-  //   const closeHour = 19;
-  //   const isOpen = hour >= openHour && hour <= closeHour;
-  //   console.log(hour);
-  //   console.log(isOpen);
-
-  //   {
-  //     isOpen ? alert("We are Open right now") : alert("We are Close right now");
-  //   }
-
-  return (
-    <footer className="footer">
-      {new Date().toLocaleTimeString()} We are Currently open in the town!
-    </footer>
-  );
-};
-// For the above code we can perform below task too:
-// import React from "react";
-// import ReactDOM from "react-dom/client";
-// function Footer() {
-//   return React.createElement(
-//     "footer",
-//     null,
-//     "We are currently open in the town"
+// function FirstComponent() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
 //   );
 // }
 
-export default App;
+// function Header() {
+//   // const style = { color: "red", fontSize: "40px", textTransform: "uppercase" };
+//   // return <h1 style={style}>Fast React Pizza co.</h1>;
+
+//   return (
+//     <div style={{}} className="header">
+//       <h1>React Pizza co.</h1>
+//     </div>
+//   );
+// }
+
+// //parent component
+// function Menu() {
+//   const pizzas = pizzaData;
+//   // const pizzas = [];
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <div className="menu">
+//       <h2>Our Menu</h2>
+
+//       {/* rendering list using && operator */}
+//       {/* {numPizzas > 0 && (
+//         <ul className="pizzas">
+//           {pizzas.map((pizza) => (
+//             <Pizza pizzaObj={pizza} key={pizza.name} />
+//           ))}`
+//         </ul>
+//       )} */}
+
+//       {/* rendering list using ternart operator */}
+//       {numPizzas > 0 ? (
+//         <Fragment>
+//           <p>
+//             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+//             perspiciatis placeat cum vero exercitationem fuga.
+//           </p>
+//           <ul className="pizzas">
+//             {pizzas.map((pizza) => (
+//               <Pizza pizzaObj={pizza} key={pizza.name} />
+//             ))}
+//           </ul>
+//         </Fragment>
+//       ) : (
+//         <h2>We will be updating our menu soon!</h2>
+//       )}
+
+//       {/* <Pizza
+//         name="Pizza Spinaci"
+//         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+//         photoName="./public/pizzas/spinaci.jpg"
+//         price={12}
+//       />
+//       <Pizza
+//         name="Pizza Margherita"
+//         ingredients="Tomato and mozarella"
+//         photoName="./pizzas/margherita.jpg"
+//         price={10}
+//       /> */}
+//     </div>
+//   );
+// }
+
+// //child component
+// function Pizza({ pizzaObj }) {
+//   // if (pizzaObj.soldOut) return null;
+
+//   return (
+//     <li className={` pizza ${pizzaObj.soldOut ? "sold-out" : null}`}>
+//       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+//       <div>
+//         <h3>Pizza: {pizzaObj.name}</h3>
+//         <p>{pizzaObj.ingredients}</p>
+//         <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// const Footer = () => {
+//   const hour = new Date().getHours();
+//   const openHour = 8;
+//   const closeHour = 19;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   //   {
+//   //     isOpen ? alert("We are Open right now") : alert("We are Close right now");
+//   //   }
+
+//   return (
+//     <footer className="footer">
+//       {isOpen ? (
+//         <Order closeHour={closeHour} openHours={openHour} />
+//       ) : (
+//         <p>Hey there, it's already closed.</p>
+//       )}
+//     </footer>
+//   );
+
+//   // return (
+//   //   <footer className="footer">
+//   //     {new Date().toLocaleTimeString()} We are Currently open in the town!
+//   //   </footer>
+//   // );
+// };
+// // For the above code we can perform below task too:
+// // import React from "react";
+// // import ReactDOM from "react-dom/client";
+// // function Footer() {
+// //   return React.createElement(
+// //     "footer",
+// //     null,
+// //     "We are currently open in the town"
+// //   );
+// // }
+
+// function Order({ closeHour, openHours }) {
+//   return (
+//     <div className="order">
+//       <p>
+//         Open from {openHours}:00 to {closeHour}:00. Come visit us or order
+//         online.
+//       </p>
+//       <button className="btn">Order</button>
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // -------------------Coding Challange 1-----------------
-/*
+
 import "./example.css";
+
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
 
 function App() {
   return (
@@ -179,15 +255,21 @@ function Body(props) {
   return (
     <>
       <div>
-        {" "}
         <h1>{props.name}</h1>
         <p>{props.details}</p>
       </div>
       <div className="skill-list">
-        <Button color="blue" skills="React" emoji="💪" />
+        {skills.map((skill) => {
+          <Button
+            color={skill.color}
+            emoji={skill.level}
+            skills={skill.name}
+          />;
+        })}
+        {/* <Button color="blue" skills="React" emoji="💪" />
         <Button color="orange" skills="HTML+CSS" emoji="💪" />
         <Button color="yellow" skills="JavaScript" emoji="💪" />
-        <Button color="red" skills="Svelte" emoji="👶" />
+        <Button color="red" skills="Svelte" emoji="👶" /> */}
       </div>
     </>
   );
@@ -203,4 +285,3 @@ function Button(props) {
 }
 
 export default App;
-*/
