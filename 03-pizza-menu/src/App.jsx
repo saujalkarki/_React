@@ -259,13 +259,14 @@ function Body(props) {
         <p>{props.details}</p>
       </div>
       <div className="skill-list">
-        {skills.map((skill) => {
+        {skills.map((skill) => (
           <Button
-            color={skill.color}
+            skills={skill.skill}
             emoji={skill.level}
-            skills={skill.name}
-          />;
-        })}
+            color={skill.color}
+            key={skill.skill}
+          />
+        ))}
         {/* <Button color="blue" skills="React" emoji="💪" />
         <Button color="orange" skills="HTML+CSS" emoji="💪" />
         <Button color="yellow" skills="JavaScript" emoji="💪" />
@@ -275,12 +276,16 @@ function Body(props) {
   );
 }
 
-function Button(props) {
+function Button({ skills, color, emoji }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skills}</span>
-      <span> {props.emoji}</span>
-    </div>
+    <>
+      <div className="skill" style={{ backgroundColor: color }}>
+        <span>{skills}</span>
+        <span>
+          {emoji === "beginner" ? "👶" : emoji === "intermediate" ? "🤟" : "💪"}
+        </span>
+      </div>
+    </>
   );
 }
 
