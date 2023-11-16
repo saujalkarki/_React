@@ -24,7 +24,10 @@ function App() {
         >
           Previous
         </button>
-        <button style={{ backgroundColor: "#7905f2", color: "#fff" }}>
+        <button
+          style={{ backgroundColor: "#7905f2", color: "#fff" }}
+          onClick={() => {}}
+        >
           Next
         </button>
       </div>
