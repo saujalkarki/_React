@@ -84,6 +84,8 @@ function Step({ key1 }) {
   let [step, setStep] = useState(1);
   let [count, setCount] = useState(1);
 
+  const date = new Date("june 11 2027");
+
   function clickMuinus() {
     (s) => {
       s === 0 ? 0 : setStep((s -= 1));
@@ -115,10 +117,9 @@ function Step({ key1 }) {
         {key1} : {key1 === "Count" ? count : step}
       </span>
       <button onClick={clickPlus}>+</button>
+      <p>{date.toDateString()}</p>
     </div>
   );
 }
-
-function Display() {}
 
 export default App;
