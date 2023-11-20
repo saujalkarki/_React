@@ -73,51 +73,66 @@ import { useState } from "react";
 
 function App() {
   return (
-    <>
-      <Step key1="Step" />
-      <Step key1="Count" />
-    </>
+    <div className="App">
+      <Display />
+    </div>
   );
 }
 
-function Step({ key1 }) {
+function Display() {
   let [step, setStep] = useState(1);
-  let [count, setCount] = useState(1);
+  let [count, setCount] = useState(0);
 
-  const date = new Date("june 11 2027");
-
-  function clickMuinus() {
-    (s) => {
-      s === 0 ? 0 : setStep((s -= 1));
-    };
-    (c) => {
-      setCount((c -= 1));
-    };
-  }
-
-  function clickPlus() {
-    (s) => {
-      setStep((s += 1));
-    };
-    (c) => {
-      setCount((c += 1));
-    };
-  }
+  const date = new Date();
+  date.setDate(date.getDate() + count);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <button onClick={clickMuinus}>-</button>
+    <div>
+      <div>
+        <button
+          onClick={() => {
+            setStep((s) => {
+              return s === 0 ? 0 : s - 1;
+            });
+          }}
+        >
+          -
+        </button>
+        <span>Step : {step}</span>
+        <button
+          onClick={() => {
+            setStep((s) => s + 1);
+          }}
+        >
+          +
+        </button>
+      </div>
+
+      <div>
+        <button
+          onClick={() => {
+            setCount((c) => c - step);
+          }}
+        >
+          -
+        </button>
+        <span>Count : {count}</span>
+        <button
+          onClick={() => {
+            setCount((c) => c + step);
+          }}
+        >
+          +
+        </button>
+      </div>
       <span>
-        {key1} : {key1 === "Count" ? count : step}
+        {count === 0
+          ? "Today is "
+          : count > 0
+          ? `${count} days from today will be `
+          : `${Math.abs(count)} days ago was `}
       </span>
-      <button onClick={clickPlus}>+</button>
-      <p>{date.toDateString()}</p>
+      <span>{date.toDateString()}</span>
     </div>
   );
 }
