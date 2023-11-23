@@ -104,6 +104,7 @@
 //   );
 // }
 
+/*
 // coding challange 1
 
 import { useState } from "react";
@@ -168,6 +169,101 @@ function FlashCard() {
           </p>
         </div>
       ))}
+    </div>
+  );
+}
+*/
+
+import { useState } from "react";
+
+export default function App() {
+  return (
+    <>
+      <Count />
+    </>
+  );
+}
+
+function Count() {
+  const [slider, setSlider] = useState(1);
+  const [input, setInput] = useState(0);
+
+  let date = new Date();
+  date.setDate(date.getDate() + input);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div className="sliderInput">
+        <input
+          type="range"
+          name="slider"
+          id="slider"
+          min={1}
+          max={10}
+          value={slider}
+          onChange={(e) => {
+            setSlider(Number(e.target.value));
+          }}
+        />
+        <label htmlFor="slider">{slider}</label>
+      </div>
+
+      <div className="inputPM">
+        <button
+          onClick={() => {
+            setInput((i) => (i -= slider));
+          }}
+        >
+          -
+        </button>
+        <input
+          value={input}
+          type="number"
+          onChange={(e) => {
+            setInput(Number(e.target.value));
+          }}
+        />
+        <button
+          onClick={() => {
+            setInput((i) => (i += slider));
+          }}
+        >
+          +
+        </button>
+      </div>
+
+      <div className="dispRen">
+        <p>
+          {(input === 0
+            ? "Today is "
+            : input > 0
+            ? `${input} day from today is `
+            : `${Math.abs(input)} day ago from today was `) +
+            date.toDateString()}
+        </p>
+      </div>
+
+      {slider !== 1 || input !== 0 ? (
+        <div className="resetInp">
+          <button
+            onClick={() => {
+              setInput((i) => (i = 0));
+              setSlider((s) => (s = 1));
+            }}
+          >
+            Reset
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
