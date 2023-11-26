@@ -1,108 +1,159 @@
-// import { useState } from "react";
+import { useState } from "react";
 
-// const initialItems = [
-//   { id: 1, description: "Passports", quantity: 2, packed: false },
-//   { id: 2, description: "Socks", quantity: 12, packed: true },
-// ];
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: false },
+];
 
-// export default function App() {
-//   return (
-//     <div className="app">
-//       <Logo />
-//       <Form />
-//       <List />
-//       <Stats />
-//     </div>
-//   );
-// }
+// The default App function
+export default function App() {
+  const [items, setItems] = useState([...initialItems]);
 
-// function Logo() {
-//   return <h1>🌴 Far Away 💼</h1>;
-// }
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
 
-// function Form() {
-//   const [descp, setDescp] = useState("");
-//   const [quant, setQuant] = useState(1);
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
+  function handleChecked(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
+  return (
+    <div className="app">
+      <Logo />
+      <Form onAddItems={handleAddItems} items={items} />
+      <List
+        onDeleteItems={handleDeleteItems}
+        onChecked={handleChecked}
+        list={items}
+      />
+      <Stats items={items} />
+    </div>
+  );
+}
 
-//     if (!descp) return;
+// The Logo section
+function Logo() {
+  return <h1>🌴 Far Away 💼</h1>;
+}
 
-//     const newItems = {
-//       id: initialItems.length + 1,
-//       description: descp,
-//       quantity: quant,
-//       packed: false,
-//     };
+function Form({ onAddItems, items }) {
+  const [descp, setDescp] = useState("");
+  const [quant, setQuant] = useState(1);
 
-//     initialItems.push(newItems);
+  function handleSubmit(e) {
+    e.preventDefault();
 
-//     setDescp("");
-//     setQuant(1);
+    if (!descp) return;
 
-//     console.log(newItems);
-//     console.log(initialItems);
-//   }
+    const newItems = {
+      id: items.length + 1,
+      description: descp,
+      quantity: quant,
+      packed: false,
+    };
 
-//   return (
-//     <form className="add-form" onSubmit={handleSubmit}>
-//       <h3>What do you need for your 😍 trip?</h3>
-//       <select
-//         name="quantity"
-//         id="quantity"
-//         value={quant}
-//         onChange={(e) => setQuant(Number(e.target.value))}
-//       >
-//         {Array.from({ length: 20 }, (_, i) => i + 1).map((opt) => (
-//           <option value={opt} key={opt}>
-//             {opt}
-//           </option>
-//         ))}
-//       </select>
-//       <input
-//         type="text"
-//         placeholder="Item..."
-//         value={descp}
-//         onChange={(e) => setDescp(e.target.value)}
-//       />
-//       <button>add</button>
-//     </form>
-//   );
-// }
+    setDescp("");
+    setQuant(1);
 
-// function List() {
-//   return (
-//     <div className="list">
-//       <ul>
-//         {initialItems.map((list) => (
-//           <Item list={list} key={list.description} />
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
+    onAddItems(newItems);
+  }
 
-// function Item({ list }) {
-//   return (
-//     <li>
-//       <input type="checkbox" name="check?ed" />
-//       <span style={list.packed ? { textDecoration: "line-through" } : {}}>
-//         {list.quantity}&nbsp;
-//         {list.description}
-//       </span>
-//       <button>❌</button>
-//     </li>
-//   );
-// }
+  return (
+    <form className="add-form" onSubmit={handleSubmit}>
+      <h3>What do you need for your 😍 trip?</h3>
+      <select
+        name="quantity"
+        id="quantity"
+        value={quant}
+        onChange={(e) => setQuant(Number(e.target.value))}
+      >
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((opt) => (
+          <option value={opt} key={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+      <input
+        type="text"
+        placeholder="Item..."
+        value={descp}
+        onChange={(e) => setDescp(e.target.value)}
+      />
+      <button>add</button>
+    </form>
+  );
+}
 
-// function Stats() {
-//   return (
-//     <footer className="stats">
-//       <em>💼 You have X item on your list, and you already packed X (X%)</em>
-//     </footer>
-//   );
-// }
+// The List section
+function List({ onDeleteItems, onChecked, list }) {
+  return (
+    <div className="list">
+      <ul>
+        {list.map((list) => (
+          <Item
+            onDeleteItems={onDeleteItems}
+            onChecked={onChecked}
+            list={list}
+            key={list.description + list.id}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// The Items section
+function Item({ onDeleteItems, onChecked, list }) {
+  return (
+    <li>
+      <input
+        type="checkbox"
+        checked={list.packed}
+        name="check?ed"
+        value={list.packed}
+        onChange={() => onChecked(list.id)}
+      />
+      <span style={list.packed ? { textDecoration: "line-through" } : {}}>
+        {list.quantity}&nbsp;
+        {list.description}
+      </span>
+      <button onClick={() => onDeleteItems(list.id)}>❌</button>
+    </li>
+  );
+}
+
+// The stats
+function Stats({ items }) {
+  let itemPacked = items.filter((item) => item.packed).length;
+  let itemPackedPercent = (itemPacked / items.length) * 100;
+  let isPercentDecimal = !Number.isInteger(itemPackedPercent);
+
+  return (
+    <footer className="stats">
+      {items.length ? (
+        <em>
+          💼 You have {items.length} item on your list,
+          {itemPacked
+            ? ` And you already packed ${itemPacked} item (${
+                isPercentDecimal
+                  ? itemPackedPercent.toFixed(1)
+                  : itemPackedPercent
+              }%)`
+            : " And you haven't packed any item yet."}
+        </em>
+      ) : (
+        <em>Let's have some packings.💼</em>
+      )}
+    </footer>
+  );
+}
 
 /*
 // coding challange 1
@@ -174,96 +225,96 @@ function FlashCard() {
 }
 */
 
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function App() {
-  return (
-    <>
-      <Count />
-    </>
-  );
-}
+// export default function App() {
+//   return (
+//     <>
+//       <Count />
+//     </>
+//   );
+// }
 
-function Count() {
-  const [slider, setSlider] = useState(1);
-  const [input, setInput] = useState(0);
+// function Count() {
+//   const [slider, setSlider] = useState(1);
+//   const [input, setInput] = useState(0);
 
-  let date = new Date();
-  date.setDate(date.getDate() + input);
+//   let date = new Date();
+//   date.setDate(date.getDate() + input);
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div className="sliderInput">
-        <input
-          type="range"
-          name="slider"
-          id="slider"
-          min={1}
-          max={10}
-          value={slider}
-          onChange={(e) => {
-            setSlider(Number(e.target.value));
-          }}
-        />
-        <label htmlFor="slider">{slider}</label>
-      </div>
+//   return (
+//     <div
+//       style={{
+//         display: "flex",
+//         flexDirection: "column",
+//         alignItems: "center",
+//         justifyContent: "center",
+//       }}
+//     >
+//       <div className="sliderInput">
+//         <input
+//           type="range"
+//           name="slider"
+//           id="slider"
+//           min={1}
+//           max={10}
+//           value={slider}
+//           onChange={(e) => {
+//             setSlider(Number(e.target.value));
+//           }}
+//         />
+//         <label htmlFor="slider">{slider}</label>
+//       </div>
 
-      <div className="inputPM">
-        <button
-          onClick={() => {
-            setInput((i) => (i -= slider));
-          }}
-        >
-          -
-        </button>
-        <input
-          value={input}
-          type="number"
-          onChange={(e) => {
-            setInput(Number(e.target.value));
-          }}
-        />
-        <button
-          onClick={() => {
-            setInput((i) => (i += slider));
-          }}
-        >
-          +
-        </button>
-      </div>
+//       <div className="inputPM">
+//         <button
+//           onClick={() => {
+//             setInput((i) => (i -= slider));
+//           }}
+//         >
+//           -
+//         </button>
+//         <input
+//           value={input}
+//           type="number"
+//           onChange={(e) => {
+//             setInput(Number(e.target.value));
+//           }}
+//         />
+//         <button
+//           onClick={() => {
+//             setInput((i) => (i += slider));
+//           }}
+//         >
+//           +
+//         </button>
+//       </div>
 
-      <div className="dispRen">
-        <p>
-          {(input === 0
-            ? "Today is "
-            : input > 0
-            ? `${input} day from today is `
-            : `${Math.abs(input)} day ago from today was `) +
-            date.toDateString()}
-        </p>
-      </div>
+//       <div className="dispRen">
+//         <p>
+//           {(input === 0
+//             ? "Today is "
+//             : input > 0
+//             ? `${input} day from today is `
+//             : `${Math.abs(input)} day ago from today was `) +
+//             date.toDateString()}
+//         </p>
+//       </div>
 
-      {slider !== 1 || input !== 0 ? (
-        <div className="resetInp">
-          <button
-            onClick={() => {
-              setInput((i) => (i = 0));
-              setSlider((s) => (s = 1));
-            }}
-          >
-            Reset
-          </button>
-        </div>
-      ) : (
-        ""
-      )}
-    </div>
-  );
-}
+//       {slider !== 1 || input !== 0 ? (
+//         <div className="resetInp">
+//           <button
+//             onClick={() => {
+//               setInput((i) => (i = 0));
+//               setSlider((s) => (s = 1));
+//             }}
+//           >
+//             Reset
+//           </button>
+//         </div>
+//       ) : (
+//         ""
+//       )}
+//     </div>
+//   );
+// }
