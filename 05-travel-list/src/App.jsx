@@ -1,159 +1,51 @@
-import { useState } from "react";
+// import { useState } from "react";
+// import { Logo, Form, List, Stats } from "./components";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-];
+// const initialItems = [
+//   { id: 1, description: "Passports", quantity: 2, packed: false },
+//   { id: 2, description: "Socks", quantity: 12, packed: false },
+// ];
 
-// The default App function
-export default function App() {
-  const [items, setItems] = useState([...initialItems]);
+// // The default App function
+// export default function App() {
+//   const [items, setItems] = useState([...initialItems]);
 
-  function handleAddItems(item) {
-    setItems((items) => [...items, item]);
-  }
+//   function handleAddItems(item) {
+//     setItems((items) => [...items, item]);
+//   }
 
-  function handleDeleteItems(id) {
-    setItems((items) => items.filter((item) => item.id !== id));
-  }
+//   function handleDeleteItems(id) {
+//     setItems((items) => items.filter((item) => item.id !== id));
+//   }
 
-  function handleChecked(id) {
-    setItems((items) =>
-      items.map((item) =>
-        item.id === id ? { ...item, packed: !item.packed } : item
-      )
-    );
-  }
-  return (
-    <div className="app">
-      <Logo />
-      <Form onAddItems={handleAddItems} items={items} />
-      <List
-        onDeleteItems={handleDeleteItems}
-        onChecked={handleChecked}
-        list={items}
-      />
-      <Stats items={items} />
-    </div>
-  );
-}
+//   function handleChecked(id) {
+//     setItems((items) =>
+//       items.map((item) =>
+//         item.id === id ? { ...item, packed: !item.packed } : item
+//       )
+//     );
+//   }
 
-// The Logo section
-function Logo() {
-  return <h1>🌴 Far Away 💼</h1>;
-}
+//   function handleClearList() {
+//     confirm("Are you sure want to clear the list?")
+//       ? setItems([])
+//       : setItems(items);
+//   }
 
-function Form({ onAddItems, items }) {
-  const [descp, setDescp] = useState("");
-  const [quant, setQuant] = useState(1);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!descp) return;
-
-    const newItems = {
-      id: items.length + 1,
-      description: descp,
-      quantity: quant,
-      packed: false,
-    };
-
-    setDescp("");
-    setQuant(1);
-
-    onAddItems(newItems);
-  }
-
-  return (
-    <form className="add-form" onSubmit={handleSubmit}>
-      <h3>What do you need for your 😍 trip?</h3>
-      <select
-        name="quantity"
-        id="quantity"
-        value={quant}
-        onChange={(e) => setQuant(Number(e.target.value))}
-      >
-        {Array.from({ length: 20 }, (_, i) => i + 1).map((opt) => (
-          <option value={opt} key={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Item..."
-        value={descp}
-        onChange={(e) => setDescp(e.target.value)}
-      />
-      <button>add</button>
-    </form>
-  );
-}
-
-// The List section
-function List({ onDeleteItems, onChecked, list }) {
-  return (
-    <div className="list">
-      <ul>
-        {list.map((list) => (
-          <Item
-            onDeleteItems={onDeleteItems}
-            onChecked={onChecked}
-            list={list}
-            key={list.description + list.id}
-          />
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-// The Items section
-function Item({ onDeleteItems, onChecked, list }) {
-  return (
-    <li>
-      <input
-        type="checkbox"
-        checked={list.packed}
-        name="check?ed"
-        value={list.packed}
-        onChange={() => onChecked(list.id)}
-      />
-      <span style={list.packed ? { textDecoration: "line-through" } : {}}>
-        {list.quantity}&nbsp;
-        {list.description}
-      </span>
-      <button onClick={() => onDeleteItems(list.id)}>❌</button>
-    </li>
-  );
-}
-
-// The stats
-function Stats({ items }) {
-  let itemPacked = items.filter((item) => item.packed).length;
-  let itemPackedPercent = (itemPacked / items.length) * 100;
-  let isPercentDecimal = !Number.isInteger(itemPackedPercent);
-
-  return (
-    <footer className="stats">
-      {items.length ? (
-        <em>
-          💼 You have {items.length} item on your list,
-          {itemPacked
-            ? ` And you already packed ${itemPacked} item (${
-                isPercentDecimal
-                  ? itemPackedPercent.toFixed(1)
-                  : itemPackedPercent
-              }%)`
-            : " And you haven't packed any item yet."}
-        </em>
-      ) : (
-        <em>Let's have some packings.💼</em>
-      )}
-    </footer>
-  );
-}
+//   return (
+//     <div className="app">
+//       <Logo />
+//       <Form onAddItems={handleAddItems} items={items} />
+//       <List
+//         onDeleteItems={handleDeleteItems}
+//         onChecked={handleChecked}
+//         onClearClick={handleClearList}
+//         list={items}
+//       />
+//       <Stats items={items} />
+//     </div>
+//   );
+// }
 
 /*
 // coding challange 1
@@ -225,6 +117,7 @@ function FlashCard() {
 }
 */
 
+// coding challange-----------------------------------------------------------------
 // import { useState } from "react";
 
 // export default function App() {
@@ -318,3 +211,42 @@ function FlashCard() {
 //     </div>
 //   );
 // }
+
+// coding challange *--------------------------------------------------------------------------------
+
+export default function App() {
+  return <Questions />;
+}
+
+function Questions() {
+  return (
+    <div className="main">
+      <Question />
+      <Question />
+      <Question />
+    </div>
+  );
+}
+
+function Question() {
+function plusClicked(){
+  
+}
+
+  return (
+    <div className="container">
+      <div className="question">
+        <h3>01</h3>
+        <h3>Where are these chairs assembled?</h3>
+        <span style={{ cursor: "pointer" }} onClick={}>+</span>
+      </div>
+      <div className="answer">
+        <p className="hide">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
+          sapiente laborum quod? Vitae qui soluta doloremque perspiciatis.
+          Exercitationem, id aliquam.
+        </p>
+      </div>
+    </div>
+  );
+}
