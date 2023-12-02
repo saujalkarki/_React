@@ -1,51 +1,53 @@
-// import { useState } from "react";
-// import { Logo, Form, List, Stats } from "./components";
+/*
+import { useState } from "react";
+import { Logo, Form, List, Stats } from "./components";
 
-// const initialItems = [
-//   { id: 1, description: "Passports", quantity: 2, packed: false },
-//   { id: 2, description: "Socks", quantity: 12, packed: false },
-// ];
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: false },
+];
 
-// // The default App function
-// export default function App() {
-//   const [items, setItems] = useState([...initialItems]);
+// The default App function
+export default function App() {
+  const [items, setItems] = useState([...initialItems]);
 
-//   function handleAddItems(item) {
-//     setItems((items) => [...items, item]);
-//   }
+  function handleAddItems(item) {
+    setItems((items) => [...items, item]);
+  }
 
-//   function handleDeleteItems(id) {
-//     setItems((items) => items.filter((item) => item.id !== id));
-//   }
+  function handleDeleteItems(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
 
-//   function handleChecked(id) {
-//     setItems((items) =>
-//       items.map((item) =>
-//         item.id === id ? { ...item, packed: !item.packed } : item
-//       )
-//     );
-//   }
+  function handleChecked(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
 
-//   function handleClearList() {
-//     confirm("Are you sure want to clear the list?")
-//       ? setItems([])
-//       : setItems(items);
-//   }
+  function handleClearList() {
+    confirm("Are you sure want to clear the list?")
+      ? setItems([])
+      : setItems(items);
+  }
 
-//   return (
-//     <div className="app">
-//       <Logo />
-//       <Form onAddItems={handleAddItems} items={items} />
-//       <List
-//         onDeleteItems={handleDeleteItems}
-//         onChecked={handleChecked}
-//         onClearClick={handleClearList}
-//         list={items}
-//       />
-//       <Stats items={items} />
-//     </div>
-//   );
-// }
+  return (
+    <div className="app">
+      <Logo />
+      <Form onAddItems={handleAddItems} items={items} />
+      <List
+        onDeleteItems={handleDeleteItems}
+        onChecked={handleChecked}
+        onClearClick={handleClearList}
+        list={items}
+      />
+      <Stats items={items} />
+    </div>
+  );
+}
+*/
 
 /*
 // coding challange 1
@@ -214,39 +216,204 @@ function FlashCard() {
 
 // coding challange *--------------------------------------------------------------------------------
 
-export default function App() {
-  return <Questions />;
-}
+// import { Children, useState } from "react";
 
-function Questions() {
+// const faqs = [
+//   {
+//     title: "Where are these chairs assembled?",
+//     text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
+//   },
+//   {
+//     title: "How long do I have to return my chair?",
+//     text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
+//   },
+//   {
+//     title: "Do you ship to countries outside the EU?",
+//     text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+//   },
+// ];
+
+// export default function App() {
+//   return <Questions />;
+// }
+
+// function Questions() {
+//   return (
+//     <div className="main">
+//       <Question faqs={faqs} />
+//     </div>
+//   );
+// }
+
+// function Question({ faqs }) {
+//   const [curOpen, setIsOpen] = useState(0);
+
+//   return (
+//     <div className="container">
+//       {faqs.map((faq, index) => (
+//         <QuestionItem
+//           key={index}
+//           title={faq.title}
+//           index={index}
+//           curOpen={curOpen}
+//           onOpen={setIsOpen}
+//         >
+//           {faq.text}
+//         </QuestionItem>
+//       ))}
+//       <QuestionItem
+//         // key={faqs.length + 2356}
+//         index={5}
+//         title="How to Master React?"
+//         curOpen={curOpen}
+//         onOpen={setIsOpen}
+//       >
+//         <h4>You can follow the following steps:</h4>
+//         <ul style={{ listStyle: "none" }}>
+//           <li>Start to think in React</li>
+//           <li>Master the state Management</li>
+//           <li>Master the props </li>
+//         </ul>
+//       </QuestionItem>
+//     </div>
+//   );
+// }
+
+// function QuestionItem({ title, index, curOpen, onOpen, children }) {
+//   const isOpen = index === curOpen;
+
+//   function handleChange() {
+//     onOpen(isOpen ? null : index);
+//   }
+
+//   return (
+//     <div className={`questionItem ${isOpen ? "selected" : ""}`}>
+//       <div className="question" onClick={handleChange}>
+//         <h3 className={`${isOpen ? "selectedH31" : ""}`}>0{index + 1}</h3>
+//         <h3 className={`${isOpen ? "selectedH32" : ""}`}>{title}</h3>
+//         <span>{isOpen ? "-" : "+"}</span>
+//       </div>
+//       <div className={`answer ${isOpen ? " " : "hide"}`}>{children}</div>
+//     </div>
+//   );
+// }
+
+// Final Coding Challange  State Management Section
+
+import { useState } from "react";
+
+function App() {
   return (
-    <div className="main">
-      <Question />
-      <Question />
-      <Question />
+    <div className="app">
+      <TipCalculator />
     </div>
   );
 }
 
-function Question() {
-function plusClicked(){
-  
-}
+function TipCalculator() {
+  const [billAmt, setBillAmt] = useState("");
+  const [myPercent, setMyPercent] = useState(0);
+  const [friendPercent, setFriendPercent] = useState(0);
+
+  let myPercentPay = Number(((myPercent / 100) * billAmt).toFixed(0));
+  let friendPercentPay = Number(((friendPercent / 100) * billAmt).toFixed(0));
+
+  let averagePay = Number(((myPercentPay + friendPercentPay) / 2).toFixed(1));
+
+  function handleReset() {
+    setBillAmt("");
+    setMyPercent(0);
+    setFriendPercent(0);
+  }
 
   return (
-    <div className="container">
-      <div className="question">
-        <h3>01</h3>
-        <h3>Where are these chairs assembled?</h3>
-        <span style={{ cursor: "pointer" }} onClick={}>+</span>
-      </div>
-      <div className="answer">
-        <p className="hide">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-          sapiente laborum quod? Vitae qui soluta doloremque perspiciatis.
-          Exercitationem, id aliquam.
-        </p>
-      </div>
+    <>
+      <Decision
+        billAmt={billAmt}
+        setBillAmt={setBillAmt}
+        myPercent={myPercent}
+        setMyPercent={setMyPercent}
+        friendPercent={friendPercent}
+        setFriendPercent={setFriendPercent}
+      />
+      <Display billAmt={billAmt} averagePay={averagePay} />
+      <Reset onReset={handleReset} />
+    </>
+  );
+}
+
+function Decision({
+  billAmt,
+  setBillAmt,
+  myPercent,
+  setMyPercent,
+  friendPercent,
+  setFriendPercent,
+}) {
+  return (
+    <div>
+      <Question>
+        <h4>How much was the Bill?</h4>
+        <input
+          type="number"
+          name="bill"
+          id="bill"
+          placeholder="0"
+          value={billAmt}
+          onChange={(e) => setBillAmt(Number(e.target.value))}
+        />
+      </Question>
+      <Question>
+        <h4>How did you like the service?</h4>
+        <select
+          name="myInPercent"
+          id="myInPercent"
+          value={myPercent}
+          onChange={(e) => setMyPercent(Number(e.target.value))}
+        >
+          <option value="0">Dissatisfied (0%)</option>
+          <option value="5">It was okay (5%)</option>
+          <option value="10">It was good (10%)</option>
+          <option value="20">Absolutely amazing! (20%)</option>
+        </select>
+      </Question>
+      <Question>
+        <h4>How did your friend like the service?</h4>
+        <select
+          name="friendInPercent"
+          id="friendInPercent"
+          value={friendPercent}
+          onChange={(e) => setFriendPercent(Number(e.target.value))}
+        >
+          <option value="0">Dissatisfied (0%)</option>
+          <option value="5">It was okay (5%)</option>
+          <option value="10">It was good (10%)</option>
+          <option value="20">Absolutely amazing! (20%)</option>
+        </select>
+      </Question>
     </div>
   );
 }
+
+function Question({ children }) {
+  return (
+    <div className="questions" style={{ display: "flex" }}>
+      {children}
+    </div>
+  );
+}
+
+function Display({ billAmt, averagePay }) {
+  return (
+    <h2>
+      You Pay ${billAmt + averagePay} (${billAmt === "" ? 0 : billAmt} + $
+      {averagePay} tip)
+    </h2>
+  );
+}
+
+function Reset({ onReset }) {
+  return <button onClick={onReset}>Reset</button>;
+}
+
+export default App;

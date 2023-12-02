@@ -147,9 +147,9 @@ body {
   gap: 20px;
 }
 
-.flashcards div {
+.flashcards div { 
   border: 1px solid #e7e7e7;
-  background-color: #f7f7f7;
+  background-color: #f7f7f7; 
   border-radius: 7px;
   aspect-ratio: 2 / 1;
   display: flex;
@@ -165,14 +165,21 @@ div.selected {
   background-color: #e03131;
   color: #fff;
   font-weight: bold;
-} */
+} 
 
 /* coding challange ---------------------------------------------------------------------------- */
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0;
   margin: 1em 15em;
 }
@@ -182,6 +189,11 @@ div.selected {
   flex-direction: column;
   justify-content: center;
   padding: 1em;
+  width: 51%;
+}
+
+.container h2 {
+  text-align: center;
 }
 
 .open {
@@ -189,8 +201,10 @@ div.selected {
 }
 
 .question {
+  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1em;
 }
 
@@ -199,11 +213,21 @@ div.selected {
   font-weight: 900;
 }
 
+.selectedH31,
+.selectedH32 {
+  color: green;
+}
+
 .hide {
   display: none;
 }
 
-.answer p {
+.answer {
+  text-align: center;
   padding-top: 0;
   margin-top: 0;
+}
+
+.selected {
+  border-top: 2px solid green;
 }
