@@ -33,11 +33,22 @@ function App() {
 
   function handleToggleHideFrnd() {
     setHideFrnd(!hideFrnd);
+    setSelectedFriend(null);
   }
 
   function handleSelectedFrnd(frnd) {
-    // setSelectedFriend(frnd);
     setSelectedFriend((cur) => (cur?.id === frnd.id ? null : frnd));
+    setHideFrnd(false);
+  }
+
+  function handleBillSubmission(value) {
+    setFrnd((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    );
   }
 
   return (
@@ -54,7 +65,11 @@ function App() {
         onToggleHideFrnd={handleToggleHideFrnd}
       />
       {selectedFriend && (
-        <SplitBill frnd={frnd} selectedFriend={selectedFriend} />
+        <SplitBill
+          frnd={frnd}
+          selectedFriend={selectedFriend}
+          onBillSubmission={handleBillSubmission}
+        />
       )}
     </div>
   );

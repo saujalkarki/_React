@@ -4,7 +4,7 @@ export function AddFriend({ onNewFriend, hideFrnd, onToggleHideFrnd }) {
   const [name, setName] = useState("");
   const [image, setImage] = useState("https://i.pravatar.cc/48?u=");
 
-  function handleSubmit(e) {
+  function handleSubmitAddFriend(e) {
     e.preventDefault();
 
     if (!name || !image) return;
@@ -28,7 +28,7 @@ export function AddFriend({ onNewFriend, hideFrnd, onToggleHideFrnd }) {
     <>
       <form
         className={`addFriend ${hideFrnd ? "" : "hide"}`}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitAddFriend}
       >
         <div className="friendName">
           <span>👫</span>
