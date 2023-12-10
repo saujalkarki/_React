@@ -1,4 +1,3 @@
-/*
 import { useState } from "react";
 import { Logo, Form, List, Stats } from "./components";
 
@@ -47,7 +46,6 @@ export default function App() {
     </div>
   );
 }
-*/
 
 /*
 // coding challange 1
@@ -300,120 +298,120 @@ function FlashCard() {
 
 // Final Coding Challange  State Management Section
 
-import { useState } from "react";
+// import { useState } from "react";
 
-function App() {
-  return (
-    <div className="app">
-      <TipCalculator />
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div className="app">
+//       <TipCalculator />
+//     </div>
+//   );
+// }
 
-function TipCalculator() {
-  const [billAmt, setBillAmt] = useState("");
-  const [myPercent, setMyPercent] = useState(0);
-  const [friendPercent, setFriendPercent] = useState(0);
+// function TipCalculator() {
+//   const [billAmt, setBillAmt] = useState("");
+//   const [myPercent, setMyPercent] = useState(0);
+//   const [friendPercent, setFriendPercent] = useState(0);
 
-  let myPercentPay = Number(((myPercent / 100) * billAmt).toFixed(0));
-  let friendPercentPay = Number(((friendPercent / 100) * billAmt).toFixed(0));
+// let myPercentPay = Number(((myPercent / 100) * billAmt).toFixed(0));
+//   let friendPercentPay = Number(((friendPercent / 100) * billAmt).toFixed(0));
 
-  let averagePay = Number(((myPercentPay + friendPercentPay) / 2).toFixed(1));
+//   let averagePay = Number(((myPercentPay + friendPercentPay) / 2).toFixed(1));
 
-  function handleReset() {
-    setBillAmt("");
-    setMyPercent(0);
-    setFriendPercent(0);
-  }
+//   function handleReset() {
+//     setBillAmt("");
+//     setMyPercent(0);
+//     setFriendPercent(0);
+//   }
 
-  return (
-    <>
-      <Decision
-        billAmt={billAmt}
-        setBillAmt={setBillAmt}
-        myPercent={myPercent}
-        setMyPercent={setMyPercent}
-        friendPercent={friendPercent}
-        setFriendPercent={setFriendPercent}
-      />
-      <Display billAmt={billAmt} averagePay={averagePay} />
-      <Reset onReset={handleReset} />
-    </>
-  );
-}
+//   return (
+//     <>
+//       <Decision
+//         billAmt={billAmt}
+//         setBillAmt={setBillAmt}
+//         myPercent={myPercent}
+//         setMyPercent={setMyPercent}
+//         friendPercent={friendPercent}
+//         setFriendPercent={setFriendPercent}
+//       />
+//       <Display billAmt={billAmt} averagePay={averagePay} />
+//       <Reset onReset={handleReset} />
+//     </>
+//   );
+// }
 
-function Decision({
-  billAmt,
-  setBillAmt,
-  myPercent,
-  setMyPercent,
-  friendPercent,
-  setFriendPercent,
-}) {
-  return (
-    <div>
-      <Question>
-        <h4>How much was the Bill?</h4>
-        <input
-          type="number"
-          name="bill"
-          id="bill"
-          placeholder="0"
-          value={billAmt}
-          onChange={(e) => setBillAmt(Number(e.target.value))}
-        />
-      </Question>
-      <Question>
-        <h4>How did you like the service?</h4>
-        <select
-          name="myInPercent"
-          id="myInPercent"
-          value={myPercent}
-          onChange={(e) => setMyPercent(Number(e.target.value))}
-        >
-          <option value="0">Dissatisfied (0%)</option>
-          <option value="5">It was okay (5%)</option>
-          <option value="10">It was good (10%)</option>
-          <option value="20">Absolutely amazing! (20%)</option>
-        </select>
-      </Question>
-      <Question>
-        <h4>How did your friend like the service?</h4>
-        <select
-          name="friendInPercent"
-          id="friendInPercent"
-          value={friendPercent}
-          onChange={(e) => setFriendPercent(Number(e.target.value))}
-        >
-          <option value="0">Dissatisfied (0%)</option>
-          <option value="5">It was okay (5%)</option>
-          <option value="10">It was good (10%)</option>
-          <option value="20">Absolutely amazing! (20%)</option>
-        </select>
-      </Question>
-    </div>
-  );
-}
+// function Decision({
+//   billAmt,
+//   setBillAmt,
+//   myPercent,
+//   setMyPercent,
+//   friendPercent,
+//   setFriendPercent,
+// }) {
+//   return (
+//     <div>
+//       <Question>
+//         <h4>How much was the Bill?</h4>
+//         <input
+//           type="number"
+//           name="bill"
+//           id="bill"
+//           placeholder="0"
+//           value={billAmt}
+//           onChange={(e) => setBillAmt(Number(e.target.value))}
+//         />
+//       </Question>
+//       <Question>
+//         <h4>How did you like the service?</h4>
+//         <select
+//           name="myInPercent"
+//           id="myInPercent"
+//           value={myPercent}
+//           onChange={(e) => setMyPercent(Number(e.target.value))}
+//         >
+//           <option value="0">Dissatisfied (0%)</option>
+//           <option value="5">It was okay (5%)</option>
+//           <option value="10">It was good (10%)</option>
+//           <option value="20">Absolutely amazing! (20%)</option>
+//         </select>
+//       </Question>
+//       <Question>
+//         <h4>How did your friend like the service?</h4>
+//         <select
+//           name="friendInPercent"
+//           id="friendInPercent"
+//           value={friendPercent}
+//           onChange={(e) => setFriendPercent(Number(e.target.value))}
+//         >
+//           <option value="0">Dissatisfied (0%)</option>
+//           <option value="5">It was okay (5%)</option>
+//           <option value="10">It was good (10%)</option>
+//           <option value="20">Absolutely amazing! (20%)</option>
+//         </select>
+//       </Question>
+//     </div>
+//   );
+// }
 
-function Question({ children }) {
-  return (
-    <div className="questions" style={{ display: "flex" }}>
-      {children}
-    </div>
-  );
-}
+// function Question({ children }) {
+//   return (
+//     <div className="questions" style={{ display: "flex" }}>
+//       {children}
+//     </div>
+//   );
+// }
 
-function Display({ billAmt, averagePay }) {
-  return (
-    <h2>
-      You Pay ${billAmt + averagePay} (${billAmt === "" ? 0 : billAmt} + $
-      {averagePay} tip)
-    </h2>
-  );
-}
+// function Display({ billAmt, averagePay }) {
+//   return (
+//     <h2>
+//       You Pay ${billAmt + averagePay} (${billAmt === "" ? 0 : billAmt} + $
+//       {averagePay} tip)
+//     </h2>
+//   );
+// }
 
-function Reset({ onReset }) {
-  return <button onClick={onReset}>Reset</button>;
-}
+// function Reset({ onReset }) {
+//   return <button onClick={onReset}>Reset</button>;
+// }
 
-export default App;
+// export default App;
