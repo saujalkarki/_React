@@ -51,7 +51,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Main />
+      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
     </>
   );
 }

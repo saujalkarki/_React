@@ -1,8 +1,10 @@
-export function Main() {
+import { ListBox, WatchedBox } from "./index";
+
+export function Main({ tempMovieData, tempWatchedData }) {
   return (
     <div className="main">
-      <div className="box"></div>
-      <div className="box"></div>
+      <ListBox tempMovieData={tempMovieData} />
+      <WatchedBox tempWatchedData={tempWatchedData} />
     </div>
   );
 }
