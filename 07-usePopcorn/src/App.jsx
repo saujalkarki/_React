@@ -1,4 +1,12 @@
-import { NavBar, Main } from "./components/index";
+import {
+  NavBar,
+  Main,
+  Box,
+  MovieList,
+  WatchedMovieList,
+  WatchedSummary,
+} from "./components/index";
+import { useState } from "react";
 
 function App() {
   const tempMovieData = [
@@ -48,10 +56,27 @@ function App() {
     },
   ];
 
+  const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
+
   return (
     <>
-      <NavBar />
-      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} />
+      <NavBar>
+        <p className="num-results">
+          Found <strong>{movies.length}</strong> results
+        </p>
+      </NavBar>
+
+      <Main>
+        <Box>
+          <MovieList movies={movies} />
+        </Box>
+
+        <Box>
+          <WatchedSummary watched={watched} />
+          <WatchedMovieList watched={watched} />
+        </Box>
+      </Main>
     </>
   );
 }
