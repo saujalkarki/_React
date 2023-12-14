@@ -66,6 +66,7 @@ function App() {
       />
       {selectedFriend && (
         <SplitBill
+          key={selectedFriend.id}
           frnd={frnd}
           selectedFriend={selectedFriend}
           onBillSubmission={handleBillSubmission}
