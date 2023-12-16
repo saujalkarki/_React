@@ -5,3 +5,5 @@ export * from "./MovieList";
 export * from "./Movie";
 export * from "./WatchedSummary";
 export * from "./WatchedMovieList";
+export * from "./Loader";
+export * from "./Error";

@@ -13,7 +13,7 @@ export function NavBar({ children }) {
         type="text"
         className="search"
         id="search"
-        placeholder="Search movies..."
+        placeholder="Search movies.. ."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
