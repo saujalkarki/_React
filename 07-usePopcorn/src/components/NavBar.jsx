@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-export function NavBar({ children }) {
-  const [query, setQuery] = useState("");
-
+export function NavBar({ query, setQuery, children }) {
   return (
     <nav className="nav-bar">
       <div className="logo">

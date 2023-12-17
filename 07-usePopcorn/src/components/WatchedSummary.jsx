@@ -17,15 +17,15 @@ export function WatchedSummary({ watched }) {
           </p>
           <p>
             <span>⭐️</span>
-            <span>{avgImbdRating}</span>
+            <span>{avgImbdRating.toFixed(2)}</span>
           </p>
           <p>
             <span>🌟</span>
-            <span>{avgUserRating}</span>
+            <span>{avgUserRating.toFixed(2)}</span>
           </p>
           <p>
             <span>⏳</span>
-            <span>{avgRuntime}</span>
+            <span>{avgRuntime} min</span>
           </p>
         </div>
       </div>

@@ -14,7 +14,7 @@ const subStyle = {
 StarRating.propTypes = {
   maxRatings: PropTypes.number.isRequired,
   color: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.number,
   message: PropTypes.array,
   defaultRating: PropTypes.number,
 };
@@ -22,11 +22,11 @@ StarRating.propTypes = {
 export function StarRating({
   maxRatings = 3,
   color = "#FFD700",
-  size = "30px",
+  size = 30,
   message = [],
-  defaultRating = 0,
+  rating,
+  setRating,
 }) {
-  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rate) {
@@ -59,8 +59,8 @@ export function StarRating({
 
 function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
   const starStyle = {
-    width: "30px",
-    height: "30px",
+    width: size,
+    height: size,
     display: "block",
     cursor: "pointer",
     color: `${color}`,

@@ -7,3 +7,5 @@ export * from "./WatchedSummary";
 export * from "./WatchedMovieList";
 export * from "./Loader";
 export * from "./Error";
+export * from "./SelectedMovie";
+export * from "./StarRating";
