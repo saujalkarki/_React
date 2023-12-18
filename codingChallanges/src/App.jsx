@@ -1,3 +1,4 @@
+/* Coding Challange 1-----------
 import { useState } from "react";
 import "./index.css";
 
@@ -69,3 +70,117 @@ function TextExpander({
     </div>
   );
 }
+*/
+
+/*coding challange 2 --- currency converter
+
+ */
+
+import { useState, useEffect } from "react";
+
+function App() {
+  const [enteredVal, setEnteredVal] = useState(1);
+  const [fromCur, setFromCur] = useState("GBP");
+  const [toCur, setToCur] = useState("USD");
+  const [result, setResult] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
+  function handleChangeInput(a) {
+    setEnteredVal(a.target.value);
+  }
+
+  useEffect(
+    function () {
+      async function convert() {
+        setIsLoading(true);
+        const res = await fetch(
+          `https://api.frankfurter.app/latest?amount=${enteredVal}&from=${fromCur}&to=${toCur}`
+        );
+        const data = await res.json();
+        setResult(data.rates[toCur]);
+        setIsLoading(false);
+      }
+
+      if (fromCur === toCur) return setResult(enteredVal);
+
+      convert();
+    },
+    [enteredVal, fromCur, toCur]
+  );
+
+  return (
+    <div className="App">
+      <div className="A">
+        <Input
+          enteredVal={enteredVal}
+          onChangeInput={handleChangeInput}
+          isLoading={isLoading}
+        />
+        <Conversion
+          conversion="from"
+          name="fromCur"
+          value={fromCur}
+          onSet={setFromCur}
+          isLoading={isLoading}
+        >
+          <option value="NPR">GBP</option>
+          <option value="USD">USD</option>
+          <option value="INR">INR</option>
+          <option value="EUR">EUR</option>
+        </Conversion>
+        <Conversion
+          conversion="to"
+          name="toCur"
+          value={toCur}
+          onSet={setToCur}
+          isLoading={isLoading}
+        >
+          <option value="USD">USD</option>
+          <option value="NPR">INR</option>
+          <option value="EUR">EUR</option>
+          <option value="INR">GBP</option>
+        </Conversion>
+      </div>
+      <div className="B">
+        <Result result={result} toCur={toCur} />
+      </div>
+    </div>
+  );
+}
+
+function Input({ enteredVal, onChangeInput, isLoading }) {
+  return (
+    <input
+      id="input"
+      type="number"
+      min="1"
+      value={enteredVal}
+      disabled={isLoading}
+      onChange={(e) => onChangeInput(e)}
+    />
+  );
+}
+
+function Conversion({ conversion, name, value, onSet, isLoading, children }) {
+  return (
+    <select
+      name={name}
+      id={conversion}
+      value={value}
+      onChange={(e) => onSet(e.target.value)}
+      disabled={isLoading}
+    >
+      {children}
+    </select>
+  );
+}
+
+function Result({ result, toCur }) {
+  return (
+    <p>
+      {result} {toCur}
+    </p>
+  );
+}
+
+export default App;
