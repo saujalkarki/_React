@@ -30,6 +30,21 @@ export function SelectedMovie({
     Genre: genre,
   } = movie;
 
+  // violating the react hooks 1st rule
+  // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
+
+  // const [isTop, setIsTop] = useState(imdbRating > 8);
+  // console.log(isTop);
+
+  // useEffect(
+  //   function () {
+  //     setIsTop(imdbRating > 8);
+  //   },
+  //   [imdbRating]
+  // );
+
+  // const [avgRating, setAvgRating] = useState(0);
+
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -41,6 +56,8 @@ export function SelectedMovie({
       runtime: Number(runtime.split(" ").at(0)),
     };
     onAddWatchedMovie(newWatchedMovie);
+    // setAvgRating(Number(imdbRating));
+    // setAvgRating((avg) => (avg + rating) / 2);
     onCloseMovie();
   }
 
@@ -112,6 +129,8 @@ export function SelectedMovie({
               </p>
             </div>
           </header>
+
+          {/* <p>{avgRating}</p> */}
 
           <section>
             <div className="rating">

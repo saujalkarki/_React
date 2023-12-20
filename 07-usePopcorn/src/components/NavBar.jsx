@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+
 export function NavBar({ query, setQuery, children }) {
+  useEffect(
+    function () {
+      const el = document.querySelector(".search");
+      console.log(el);
+      el.focus();
+    },
+    [query]
+  );
+
   return (
     <nav className="nav-bar">
       <div className="logo">
