@@ -1,14 +1,23 @@
-import { useEffect } from "react";
+import { useRef } from "react";
+import { useKey } from "./index";
 
 export function NavBar({ query, setQuery, children }) {
-  useEffect(
-    function () {
-      const el = document.querySelector(".search");
-      console.log(el);
-      el.focus();
-    },
-    [query]
-  );
+  // useEffect(
+  //   function () {
+  //     const el = document.querySelector(".search");
+  //     el.focus();
+  //   },
+  //   [query]
+  // );
+
+  const inputEl = useRef(null);
+
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) return;
+
+    inputEl.current.focus();
+    setQuery("");
+  });
 
   return (
     <nav className="nav-bar">
@@ -23,6 +32,7 @@ export function NavBar({ query, setQuery, children }) {
         placeholder="Search movies.. ."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        ref={inputEl}
       />
       {children}
     </nav>
