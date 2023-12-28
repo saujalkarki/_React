@@ -33,7 +33,17 @@ function formatDay(dateStr) {
 }
 
 async function getWeather(location) {
-  try {
+
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { location: "libson" };
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
+
+  fetchWeather() {  try {
     // 1) Getting location (geocoding)
     const geoRes = await fetch(
       `https://geocoding-api.open-meteo.com/v1/search?name=${location}`
@@ -56,18 +66,6 @@ async function getWeather(location) {
   } catch (err) {
     console.err(err);
   }
-}
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { location: "libson" };
-    this.fetchWeather = this.fetchWeather.bind(this);
-  }
-
-  fetchWeather() {
-    console.log("Loading data...");
-    console.log(this);
   }
 
   render() {
