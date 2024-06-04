@@ -46,7 +46,7 @@ function Steps() {
           </div>
 
           <StepMessage step={step}>
-            {messages[step - 1]}{" "}
+            {messages[step - 1]}
             <div className="buttons">
               <button
                 onClick={() => {
