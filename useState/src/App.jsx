@@ -12,6 +12,8 @@ function App() {
       <Anything>Hello there</Anything>
       <TryState />
       <Try2 />
+      <br />
+      <ConditionalRendering />
     </>
   );
 }
@@ -104,6 +106,23 @@ function Try2() {
       >
         Click Here
       </button>
+    </>
+  );
+}
+
+function ConditionalRendering() {
+  const [condition, setCondition] = useState(false);
+
+  return (
+    <>
+      <input
+        type="checkbox"
+        checked={condition}
+        onChange={() => {
+          setCondition(!condition);
+        }}
+      />
+      <p>Ram {condition ? "just Liked this" : "didn't liked this"} checkbox.</p>
     </>
   );
 }
