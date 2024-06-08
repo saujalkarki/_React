@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Event, Home } from "./pages/index";
+import { Event, FormContext, Home, UseContext } from "./pages/index";
 
 function App() {
   return (
@@ -8,6 +8,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Event />} />
+          <Route path="/context" element={<UseContext />} />
+          <Route path="/formcontext" element={<FormContext />} />
         </Routes>
       </BrowserRouter>
     </>

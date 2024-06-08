@@ -69,13 +69,10 @@ export function Event() {
         {/* On KeyDownCapture */}
         <input
           type="text"
+          onKeyUp={(e) => {
+            console.log(e.key, e.code);
+          }}
           onKeyDown={(e) => {
-            console.log(e.key, e.code);
-          }}
-          onKeyDownCapture={(e) => {
-            console.log(e.key, e.code);
-          }}
-          onKeyUpCapture={(e) => {
             console.log(e.key, e.code);
           }}
         />
