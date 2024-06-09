@@ -1,15 +1,13 @@
 import { useContext } from "react";
-import SubmitContext from "./FormContext";
+import { counterContext } from "../../context/context";
 
 export function ChildC() {
-  const dataC = useContext(SubmitContext);
-
-  console.log(dataC);
-
+  const data = useContext(counterContext);
+  console.log(data);
   return (
     <>
-      <h1>useName:{}</h1>
-      <h1>password:{}</h1>
+      <h1>ID:{data.userName}</h1>
+      <h1>PassWord:{data.password}</h1>
     </>
   );
 }

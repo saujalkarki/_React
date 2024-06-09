@@ -1,19 +1,17 @@
-import { createContext, useState } from "react";
-
-const SubmitContext = createContext();
+import { useState } from "react";
+import { counterContext } from "../../context/context";
+import { UseContext } from "./UseContext";
 
 export function FormContext() {
   const [data, setData] = useState({ userName: "", password: "" });
 
-  console.log(SubmitContext.value);
-  console.log(data);
-
   return (
     <>
-      <SubmitContext.Provider value={data}>
+      <counterContext.Provider value={data}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            console.log(data);
           }}
         >
           <label htmlFor="userName">UserName</label>
@@ -26,7 +24,7 @@ export function FormContext() {
             }}
           />
 
-          <label htmlFor="password">UserName</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -38,9 +36,8 @@ export function FormContext() {
 
           <button>Submit</button>
         </form>
-      </SubmitContext.Provider>
+        <UseContext />
+      </counterContext.Provider>
     </>
   );
 }
-
-export default SubmitContext;
