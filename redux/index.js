@@ -55,10 +55,10 @@ async function getUser() {
 getUser();
 
 // Action Creators
-async function initUser() {
+async function initUser(dispatch, getState) {
   const { data } = await axios.get("http://localhost:3000/acount");
 
-  return { type: init, payload: data.amount };
+  dispatch({ type: init, payload: data.amount });
 }
 
 function increment() {
@@ -79,7 +79,5 @@ function incrementByAmount(value) {
 }
 
 setInterval(() => {
-  store.dispatch(initUser());
+  store.dispatch(initUser);
 }, 2000);
-
-console.log(store.getState());
