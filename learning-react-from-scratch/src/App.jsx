@@ -1,12 +1,15 @@
-import Navbar from "./components/Navbar";
+import Header from "./components/Header.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
     <>
+      <Header />
       <Navbar />
-      <h1>This is my first vite react app.</h1>
-      <h2>This is hot module reload</h2>
-      <h3>This is going to load this page very fast</h3>
+      <section className=" ">This is Hero section.</section>
+      <div>This is the main div.</div>
+      <Footer />
     </>
   );
 }
