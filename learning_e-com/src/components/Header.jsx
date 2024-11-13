@@ -2,9 +2,37 @@ import { Logo } from "./index";
 import { FaSearch } from "react-icons/fa";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaCartShopping } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { RiLogoutBoxRLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import SummaryApi from "../common/api";
+import { toast } from "react-toastify";
+import { setUserDetails } from "../store/userSlice";
 
 export function Header() {
+  const user = useSelector((state) => state?.user?.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogOUt = async () => {
+    const fetchData = await fetch(SummaryApi.logOut.url, {
+      method: SummaryApi.logOut.method,
+      credentials: "include",
+    });
+
+    const data = await fetchData.json();
+
+    if (data.status === "Success") {
+      toast.success("User Logged out successfully.");
+      dispatch(setUserDetails(null));
+      navigate("/");
+    }
+
+    if (data.status === "Error") {
+      toast.error("Error logging out.");
+    }
+  };
+
   return (
     <header className=" h-16 shadow-xl">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">
@@ -27,8 +55,26 @@ export function Header() {
         </div>
 
         <div className="flex gap-6">
-          <div className="text-3xl cursor-pointer">
-            <FaRegCircleUser />
+          <div className=" relative group flex justify-center">
+            <div className="text-3xl cursor-pointer">
+              {user?.profilePic ? (
+                <img
+                  src={user?.profilePic}
+                  alt={user?.name}
+                  className="w-[2.2rem] h-[2.2rem] rounded-full border-2 border-black"
+                />
+              ) : (
+                <FaRegCircleUser />
+              )}
+            </div>
+            <div className="hidden group-hover:block absolute bg-slate-200 hover:bg-slate-300 bottom-0 top-8 h-fit py-2  px-4 rounded-b-md">
+              <Link
+                to={"/adminpanel"}
+                className=" whitespace-nowrap hidden md:block"
+              >
+                Admin panel
+              </Link>
+            </div>
           </div>
           <div className="text-3xl relative">
             <span>
@@ -39,11 +85,17 @@ export function Header() {
             </div>
           </div>
           <div>
-            <Link to={"/login"}>
-              <button className="px-3 py-1 rounded-full outline-none text-white bg-red-600 hover:bg-red-800">
-                Login
-              </button>
-            </Link>
+            {user?._id ? (
+              <div className="pr-2 py-1 text-2xl cursor-pointer">
+                <RiLogoutBoxRLine onClick={handleLogOUt} />
+              </div>
+            ) : (
+              <Link to={"/login"}>
+                <button className="px-3 py-1 rounded-full outline-none text-white bg-red-600 hover:bg-red-800">
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

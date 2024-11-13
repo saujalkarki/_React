@@ -5,3 +5,7 @@
 body {
   @apply bg-slate-100;
 }
+
+.customShadow {
+  box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.2);
+}

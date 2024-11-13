@@ -1,6 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { Home, Login, Forgotpassword, Signup } from "../pages/index";
+import {
+  Home,
+  Login,
+  Forgotpassword,
+  Signup,
+  AdminPanel,
+  Allusers,
+  AllProduct,
+} from "../pages/index";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +30,20 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "adminpanel",
+        element: <AdminPanel />,
+        children: [
+          {
+            path: "allusers",
+            element: <Allusers />,
+          },
+          {
+            path: "allproduct",
+            element: <AllProduct />,
+          },
+        ],
       },
     ],
   },

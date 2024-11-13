@@ -60,9 +60,9 @@ export function Signup() {
 
   const handleUploadPic = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
 
     const imagePic = await ImageTobase64(file);
+
     console.log(imagePic);
 
     setData((prev) => {
@@ -72,8 +72,6 @@ export function Signup() {
       };
     });
   };
-
-  // console.log(data);
 
   return (
     <section id="signup">
