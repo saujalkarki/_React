@@ -44,8 +44,6 @@ export function Login() {
 
     const dataApi = await dataResponse.json();
 
-    console.log(dataResponse);
-
     if (dataApi.status === "Success") {
       toast.success(dataApi.message);
       generalContext.fetchUserDetails();
@@ -56,8 +54,6 @@ export function Login() {
       toast.error(dataApi.message);
     }
   };
-
-  console.log(data);
 
   return (
     <section id="login">

@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SummaryApi from "../common/api";
 import { toast } from "react-toastify";
 import { setUserDetails } from "../store/userSlice";
+import Role from "../common/role";
 
 export function Header() {
   const user = useSelector((state) => state?.user?.user);
@@ -33,6 +34,17 @@ export function Header() {
     }
   };
 
+  const handleAdminPanel = () => {
+    if (user) {
+      navigate("/adminpanel/allproduct");
+    } else {
+      toast.warn("Please login to access admin pannel.");
+    }
+  };
+
+  console.log(user);
+  console.log(user?._id);
+
   return (
     <header className=" h-16 shadow-xl">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">
@@ -56,25 +68,30 @@ export function Header() {
 
         <div className="flex gap-6">
           <div className=" relative group flex justify-center">
-            <div className="text-3xl cursor-pointer">
-              {user?.profilePic ? (
-                <img
-                  src={user?.profilePic}
-                  alt={user?.name}
-                  className="w-[2.2rem] h-[2.2rem] rounded-full border-2 border-black"
-                />
-              ) : (
-                <FaRegCircleUser />
-              )}
-            </div>
-            <div className="hidden group-hover:block absolute bg-slate-200 hover:bg-slate-300 bottom-0 top-8 h-fit py-2  px-4 rounded-b-md">
-              <Link
-                to={"/adminpanel"}
-                className=" whitespace-nowrap hidden md:block"
-              >
-                Admin panel
-              </Link>
-            </div>
+            {user?._id && (
+              <div className="text-3xl cursor-pointer">
+                {user?.profilePic ? (
+                  <img
+                    src={user?.profilePic}
+                    alt={user?.name}
+                    className="w-[2.2rem] h-[2.2rem] rounded-full border-2 border-black"
+                  />
+                ) : (
+                  <FaRegCircleUser />
+                )}
+              </div>
+            )}
+
+            {user?.role === Role.Admin && (
+              <div className="hidden cursor-pointer group-hover:block absolute bg-slate-200 hover:bg-slate-300 bottom-0 top-8 h-fit py-2  px-4 rounded-b-md">
+                <div
+                  onClick={handleAdminPanel}
+                  className=" whitespace-nowrap hidden md:block"
+                >
+                  Admin panel
+                </div>
+              </div>
+            )}
           </div>
           <div className="text-3xl relative">
             <span>

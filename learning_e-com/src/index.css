@@ -9,3 +9,15 @@ body {
 .customShadow {
   box-shadow: 10px 0 15px -3px rgba(0, 0, 0, 0.2);
 }
+
+.userTable {
+  @apply bg-slate-400;
+}
+
+.userTable th {
+  @apply border text-base font-medium;
+}
+
+.userTable td {
+  @apply border text-base text-center;
+}
