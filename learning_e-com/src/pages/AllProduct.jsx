@@ -1,8 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UploadProduct } from "../components/index";
+import SummaryApi from "../common/api";
 
 export function AllProduct() {
   const [openUploadProduct, setOpenUploadProduct] = useState(false);
+  const [allProduct, setAllProduct] = useState([]);
+
+  const fetchAllProduct = async () => {
+    const dataResponse = await fetch(SummaryApi.getProduct.url, {
+      method: SummaryApi.getProduct.method,
+    });
+
+    const dataApi = await dataResponse.json();
+
+    setAllProduct(dataApi?.data);
+  };
+
+  useEffect(() => {
+    fetchAllProduct();
+  }, []);
 
   return (
     <div>
@@ -17,6 +33,18 @@ export function AllProduct() {
           Upload Product
         </button>
       </div>
+
+      <div className="flex items-center gap-5 p-3">
+        {allProduct.map((product, index) => {
+          return (
+            <div key={index} className="bg-slate-300 p-4 rounded text-center">
+              <img src={product.productImage[0]} width={140} height={140} />
+              <h1>{product.productName}</h1>
+            </div>
+          );
+        })}
+      </div>
+
       {openUploadProduct && (
         <UploadProduct
           onClose={() => {
