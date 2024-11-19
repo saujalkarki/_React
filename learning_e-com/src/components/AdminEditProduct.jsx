@@ -7,16 +7,17 @@ import SummaryApi from "../common/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export function UploadProduct({ onClose, fetchProduct }) {
+export function AdminEditProduct({ onClose, productData, fetchData }) {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    productName: "",
-    brandName: "",
-    category: "",
-    productImage: [],
-    description: "",
-    price: "",
-    sellingPrice: "",
+    ...productData,
+    productName: productData?.productName,
+    brandName: productData?.brandName,
+    category: productData?.category,
+    productImage: productData?.productImage,
+    description: productData?.description,
+    price: productData?.price,
+    sellingPrice: productData?.sellingPrice,
   });
 
   const [fullScreenImage, setFullScreenImage] = useState("");
@@ -60,10 +61,8 @@ export function UploadProduct({ onClose, fetchProduct }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("success1");
-
-    const dataResponse = await fetch(SummaryApi.uploadProduct.url, {
-      method: SummaryApi.uploadProduct.method,
+    const dataResponse = await fetch(SummaryApi.updateProduct.url, {
+      method: SummaryApi.updateProduct.method,
       credentials: "include",
       headers: {
         "content-type": "application/json",
@@ -71,14 +70,12 @@ export function UploadProduct({ onClose, fetchProduct }) {
       body: JSON.stringify(data),
     });
 
-    console.log("success2");
-
     const dataApi = await dataResponse.json();
 
     if (dataApi.status === "Success") {
       toast.success(dataApi?.message);
       onClose();
-      fetchProduct();
+      fetchData();
     }
 
     if (dataApi.status === "Error") {
@@ -90,7 +87,7 @@ export function UploadProduct({ onClose, fetchProduct }) {
     <div className="fixed bg-slate-300 bg-opacity-40 top-0 bottom-0 left-0 right-0 w-full h-full flex justify-center items-center ">
       <div className="bg-white p-4 rounded w-full max-w-xl h-full max-h-[75%] overflow-hidden">
         <div className=" flex items-center justify-between pb-2">
-          <h2 className=" font-bold text-lg">Upload Product</h2>
+          <h2 className=" font-bold text-lg">Edit Product</h2>
           <div
             className=" text-4xl cursor-pointer hover:text-red-700"
             onClick={onClose}
@@ -224,7 +221,7 @@ export function UploadProduct({ onClose, fetchProduct }) {
           />
 
           <button className=" mt-3 px-2 py-3 text-white border bg-red-600 hover:bg-red-800 rounded-lg">
-            Uplaod Product
+            Update Product
           </button>
         </form>
       </div>

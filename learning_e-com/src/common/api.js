@@ -33,6 +33,10 @@ const SummaryApi = {
     url: `${backEndDomain}/api/getproducts`,
     method: "get",
   },
+  updateProduct: {
+    url: `${backEndDomain}/api/updateproduct`,
+    method: "post",
+  },
 };
 
 export default SummaryApi;

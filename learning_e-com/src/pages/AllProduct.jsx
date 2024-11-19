@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { UploadProduct } from "../components/index";
+import { AdminProductCard, UploadProduct } from "../components/index";
 import SummaryApi from "../common/api";
 
 export function AllProduct() {
@@ -34,13 +34,14 @@ export function AllProduct() {
         </button>
       </div>
 
-      <div className="flex items-center gap-5 p-3">
+      <div className="flex flex-wrap items-center gap-5 p-3 h-[calc(100vh-185px)] overflow-y-scroll">
         {allProduct.map((product, index) => {
           return (
-            <div key={index} className="bg-slate-300 p-4 rounded text-center">
-              <img src={product.productImage[0]} width={140} height={140} />
-              <h1>{product.productName}</h1>
-            </div>
+            <AdminProductCard
+              key={index}
+              data={product}
+              fetchData={fetchAllProduct}
+            />
           );
         })}
       </div>
@@ -50,6 +51,7 @@ export function AllProduct() {
           onClose={() => {
             setOpenUploadProduct(false);
           }}
+          fetchProduct={fetchAllProduct}
         />
       )}
     </div>

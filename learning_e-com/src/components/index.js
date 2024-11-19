@@ -5,3 +5,4 @@ export * from "./ChangeUserRole";
 export * from "./UploadProduct";
 export * from "./DisplayImage";
 export * from "./AdminProductCard";
+export * from "./AdminEditProduct";
