@@ -8,6 +8,7 @@ import {
   AdminPanel,
   Allusers,
   AllProduct,
+  CategoryProduct,
 } from "../pages/index";
 
 const router = createBrowserRouter([
@@ -44,6 +45,11 @@ const router = createBrowserRouter([
             element: <AllProduct />,
           },
         ],
+      },
+
+      {
+        path: "categoryproduct/:categoryName",
+        element: <CategoryProduct />,
       },
     ],
   },
