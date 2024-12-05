@@ -42,9 +42,6 @@ export function Header() {
     }
   };
 
-  console.log(user);
-  console.log(user?._id);
-
   return (
     <header className=" h-16 shadow-xl">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">

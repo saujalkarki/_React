@@ -3,7 +3,7 @@ import FetchCategoryWiseProduct from "../helpers/FetchCategoryWiseProduct";
 import displayCurrency from "../helpers/DisplayCurency";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
-export function HorizontalCartProduct({ category, heading }) {
+export function VerticalCardProduct({ category, heading }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const loadingList = new Array(13).fill(null);

@@ -9,3 +9,4 @@ export * from "./AdminEditProduct";
 export * from "./CategoryList";
 export * from "./BannerProduct";
 export * from "./HorizontalCartProduct";
+export * from "./VerticalCardProduct";
