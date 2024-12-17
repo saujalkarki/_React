@@ -18,7 +18,7 @@ export function Home() {
       <HorizontalCartProduct category={"mobile"} heading={"Top's mobiles"} />
       <HorizontalCartProduct category={"mouse"} heading={"Top's mouse"} />
       <HorizontalCartProduct category={"printers"} heading={"Top's printers"} />
-      <VerticalCardProduct />
+      <VerticalCardProduct category={"mobile"} heading={"Top's Mobiles"} />
     </>
   );
 }

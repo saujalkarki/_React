@@ -46,8 +46,8 @@ export function Header() {
     <header className=" h-16 shadow-xl">
       <div className=" h-full container mx-auto flex items-center px-4 justify-between">
         <div className="">
-          <Link to={"/"}>
-            <Logo h={150} w={100} />
+          <Link to={"/"} className="text-2xl font-semibold">
+            Shop_Here
           </Link>
         </div>
 

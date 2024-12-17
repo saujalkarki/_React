@@ -35,7 +35,7 @@ export function VerticalCardProduct({ category, heading }) {
     <div className="container mx-auto px-4 my-6">
       <h2 className="text-2xl font-semibold py-2">{heading}</h2>
       <div
-        className="flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all"
+        className="flex items-center gap-4 md:gap-6 overflow-x-scroll scrollbar-none transition-all"
         ref={scrollElemnt}
       >
         <button
@@ -54,9 +54,9 @@ export function VerticalCardProduct({ category, heading }) {
           return (
             <div
               key={index}
-              className="flex w-full min-w-[280px] md:min-w-[400px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow-md"
+              className="w-full min-w-[280px] md:min-w-[400px] max-w-[280px] md:max-w-[320px] bg-white rounded-sm shadow-md"
             >
-              <div className="bg-red-200 h-full min-w-[40%] p-4 cursor-pointer">
+              <div className="bg-red-200 h-32 min-w-[280px] p-4 cursor-pointer flex justify-center items-center">
                 <img
                   src={product.productImage[0]}
                   alt={`${index} image`}
