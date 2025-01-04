@@ -1,0 +1,74 @@
+body {
+  background-color: black;
+}
+
+.terminal {
+  width: 600px;
+  height: 150px;
+  border: 2px solid limegreen;
+  border-radius: 10px;
+  background-color: black;
+  padding: 10px;
+  font-family: "Courier New", Courier, monospace;
+  color: limegreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.window-buttons span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.window-buttons .red {
+  background-color: red;
+}
+
+.window-buttons .yellow {
+  background-color: yellow;
+}
+
+.window-buttons .green {
+  background-color: green;
+}
+
+.text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: limegreen;
+}
+
+p {
+  animation: typing 1s steps(20, end), blink 0.5s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-right: 2px solid limegreen;
+  }
+  to {
+    border-right: 2px solid transparent;
+  }
+}
