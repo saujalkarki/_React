@@ -61,15 +61,15 @@ function Steps() {
           <div className="buttons">
             <Button
               handleClick={handlePrevious}
-              // btnContent={" Previous"}
-              // btnEmoji={"👈🏻"}
+              btnContent={" Previous"}
+              btnEmoji={"👈🏻"}
             >
               👈🏻 Previous
             </Button>
             <Button
               handleClick={handleNext}
-              // btnContent={"Next"}
-              // btnEmoji={"👉🏻"}
+              btnContent={"Next"}
+              btnEmoji={"👉🏻"}
             >
               Next 👉🏻
             </Button>
