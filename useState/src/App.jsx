@@ -1,6 +1,6 @@
 // import { useState } from "react";
 
-import Terminal from "./Terminal";
+// import Terminal from "./Terminal";
 
 // /* eslint-disable react/prop-types */
 // function App() {
@@ -129,10 +129,15 @@ import Terminal from "./Terminal";
 //   );
 // }
 
+import Card from "./components/Card";
+
 function App() {
   return (
     <>
-      <Terminal />
+      <h1>This is main component.</h1>
+      {[0, 1, 2, 3, 4, 5].map((ab, indx) => {
+        return <Card cardNo={indx + 1} key={ab} />;
+      })}
     </>
   );
 }
